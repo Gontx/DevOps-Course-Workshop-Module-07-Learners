@@ -9,9 +9,6 @@ pipeline{
             }
         } 
         stage('npm build'){
-            agent {
-                docker {image 'node:14-alpine'}
-             }
             steps{
                 dir('DotnetTemplate.Web'){
                     echo "Building node..."

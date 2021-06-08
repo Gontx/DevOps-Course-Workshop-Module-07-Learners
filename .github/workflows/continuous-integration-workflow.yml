@@ -29,7 +29,4 @@ jobs:
       run: |
        npm run lint
       working-directory: DotnetTemplate.Web
-    
-    - name: Slack Notification
-      run: |
-       curl -X POST --data-urlencode "payload={\"channel\": \"#general\", \"username\": \"webhookbot\", \"text\": \"Build successful\"}" https://hooks.slack.com/services/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
+  
