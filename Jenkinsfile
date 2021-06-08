@@ -12,7 +12,7 @@ pipeline{
         
         stage('npm build'){
             steps{
-                cd DotnetTemplate.web
+                cd DotnetTemplate.Web
                 npm run build --if-present
             }
         }
