@@ -28,6 +28,7 @@ pipeline{
                 DOTNET_CLI_HOME = "/tmp/dotnet_cli_home"
             }
             steps{
+                checkout scm
                 echo "Building dotnet..."
                 sh "dotnet build"
                 echo "Testing dotnet..."
