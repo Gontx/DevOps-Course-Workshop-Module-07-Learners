@@ -8,49 +8,25 @@ pipeline{
             steps{
                 checkout scm
             }
-        }
-        
+        } 
         stage('npm build'){
+            agent {
+                docker {image 'node:14-alpine'}
+             }
             steps{
-                cd DotnetTemplate.Web
-                npm run build --if-present
+                dir('DotnetTemplate.Web'){
+                    sh "npm run build --if-present"
+                    sh "npm run lint"
+                } 
             }
         }
-        
-        stage('Node test'){
-            steps{
-                cd DotnetTemplate.Web
-                npm t
+        stage('DotNet build'){
+            agent {
+                docker {image 'mcr.microsoft.com/dotnet/sdk'}
             }
-        }
-        
-        stage('Node lint test'){
             steps{
-                npm run lint
-            }
-        }
-    }
-
-    agent {
-        docker {image 'mcr.microsoft.com/dotnet/sdk'}
-    }
-    
-    stages{
-        stage('Checkout'){
-            steps{
-                checkout scm
-            }
-        }
-
-        stage('Dotnet Build'){
-            steps{
-                dotnet build
-            }
-        }
-        
-        stage('dotnet test'){
-            steps{
-                dotnet test
+                sh "dotnet build"
+                sh "dotnet test"
             }
         }
     }
