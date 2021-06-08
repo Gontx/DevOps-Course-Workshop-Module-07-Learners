@@ -32,6 +32,7 @@ pipeline{
                 sh "dotnet build"
                 echo "Testing dotnet..."
                 sh "dotnet test"
+                echo "Finishing"
             }
         }
     }
