@@ -11,7 +11,9 @@ pipeline{
              }
             steps{
                 dir('DotnetTemplate.Web'){
+                    echo "Building node..."
                     sh "npm run build --if-present"
+                    echo "Testing node..."
                     sh "npm run lint"
                 } 
             }
@@ -21,7 +23,9 @@ pipeline{
                 docker {image 'mcr.microsoft.com/dotnet/sdk'}
             }
             steps{
+                echo "Building dotnet..."
                 sh "dotnet build"
+                echo "Testing dotnet..."
                 sh "dotnet test"
             }
         }
