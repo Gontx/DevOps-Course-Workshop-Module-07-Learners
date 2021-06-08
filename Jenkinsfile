@@ -15,7 +15,7 @@ pipeline{
                     sh "npm install"
                     sh "npm run build --if-present"
                     echo "Testing node..."
-                    sh "mpm t"
+                    sh "npm t"
                     sh "npm run lint"
                 } 
             }
