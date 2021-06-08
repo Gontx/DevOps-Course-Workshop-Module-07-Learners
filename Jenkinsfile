@@ -1,16 +1,13 @@
 pipeline{
     agent none
     stages{
-        stage('Checkout'){
-            steps{
-                checkout scm
-            }
-        } 
+        
         stage('npm build'){
             agent{
                 docker {image 'node:14-alpine'}
             }
             steps{
+                checkout scm
                 dir('DotnetTemplate.Web'){
                     echo "Building node..."
                     sh "npm install"
